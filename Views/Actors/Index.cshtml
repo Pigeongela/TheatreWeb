@@ -1,0 +1,75 @@
+﻿@model IEnumerable<TheatreWeb.Models.Actors>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Актеры</h1>
+@if (User.IsInRole("Employee") == true)
+{
+    <p>
+        <a asp-action="Create">Новая запись</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Biography)
+            </th>
+            @if (User.IsInRole("Employee") == true)
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.IsDeleted)
+                </th>}
+                <th></th>
+            </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    <img src="@Url.Action("GetImage", "Actors", new { id = item.Id })" alt="Actors Photo" style="width: 150%; height: 150%;">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Biography)
+                </td>
+                <td>
+                    @if (User.IsInRole("Employee") == true)
+                    {
+                        @Html.DisplayFor(modelItem => item.IsDeleted)}
+                    </td>
+                <td>
+                    @if (User.IsInRole("Employee") == true) {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать |</a>}
+                    <a asp-action="Details" asp-route-id="@item.Id">Посмотреть</a>
+                    @if (User.IsInRole("AdminDB") == true)
+                    {<a asp-action="Delete" asp-route-id="@item.Id"> | Удалить</a>}
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    nav {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    table {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    h1 {
+        color: rgba(255, 255, 255, 0.7)
+    }
+</style>

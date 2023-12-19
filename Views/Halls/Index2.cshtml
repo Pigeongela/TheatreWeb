@@ -1,0 +1,82 @@
+﻿@model IEnumerable<TheatreWeb.Models.Seats>
+
+@{
+    ViewData["Title"] = "Seats";
+}
+
+<h1>Выберите место</h1>
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HallId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Row)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                Занято
+            </th>
+            <th>
+                Стоимость
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr onload="multiply(@item.Id)">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Halls.HallName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Level)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Row)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostCoefficient)
+                    @*<script src="@Url.Action("Multiply", "Seats", new { id = item.Id })" name="coast"></script>*@
+                    @*<a asp-action="Multiply" asp-route-id="@item.Id">умножить</a>*@
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Посмотреть</a>
+                    @if (User.IsInRole("AdminDB") == true)
+                    {<a asp-action="Delete" asp-route-id="@item.Id"> | Удалить</a>}
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    nav {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    table {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    h1 {
+        color: rgba(255, 255, 255, 0.7)
+    }
+</style>

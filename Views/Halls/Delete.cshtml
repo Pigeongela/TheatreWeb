@@ -1,0 +1,53 @@
+﻿@model TheatreWeb.Models.Halls
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удаление</h1>
+
+<h3>Вы уверены, что хотите удалить запись?</h3>
+<div>
+    <h4>Залы</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HallName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HallName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Schema)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Schema)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CostCoefficient)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CostCoefficient)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Назад</a>
+    </form>
+</div>
+<style>
+    h1 {
+        color: rgba(255, 255, 255, 0.7)
+    }
+    h3 {
+        color: rgba(255, 255, 255, 0.7)
+    }
+    h4 {
+        color: rgba(255, 255, 255, 0.7)
+    }
+    dl {
+        color: rgba(255, 255, 255, 0.7)
+    }
+</style>
