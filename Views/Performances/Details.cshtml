@@ -1,0 +1,35 @@
+﻿@model TheatreWeb.Models.Performances
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Html.DisplayFor(model => model.Title)</h1>
+
+<body>
+    <hr />
+    <h5>Продолжительность: @Html.DisplayFor(model => model.Duration)</h5>
+    <h5>@Html.DisplayFor(model => model.Description)</h5>
+    <img src="@Url.Action("GetImage", "Performances", new { id =  Model.Id })" alt="Perfomances Image" style="width: 60%; height: 60%;">
+</body>
+<div>
+    @if (User.IsInRole("Employee") == true)
+    {<a asp-action="Edit" asp-route-id="@Model.Id">Редактировать |</a>}
+    <a asp-controller = "Afisha" asp-action = "Index">Все спектакли</a>
+
+    </div>
+
+
+<style>
+    h1 {
+    color: rgba(255, 255, 255, 0.7)
+    }
+
+    h4 {
+    color: rgba(255, 255, 255, 0.7)
+    }
+
+    h5 {
+    color: rgba(255, 255, 255, 0.7)
+    }
+</style>

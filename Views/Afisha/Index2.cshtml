@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TheatreWeb.Models.Afisha>
+
+@{
+    ViewData["Title"] = "Afisha";
+}
+
+<h1>Афиша</h1>
+<body>
+
+    @foreach (var item in Model)
+    {
+        @if (item.IsArchived == false)
+        {
+            <div class="container">
+
+                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow mb-3">
+
+                    <h3 class="nav-item" style="text-align:left">
+                        @Html.DisplayFor(modelItem => item.Date) @Html.DisplayFor(modelItem => item.DayOfWeek)
+                    </h3>
+                    <h3>
+                        <a class="nav-link nav-item text-dark" style=" color:slateblue;" asp-area="" asp-controller="Performances" asp-action="Details" asp-route-id="@item.Performance.Id">
+                            @Html.DisplayFor(modelItem => item.Performance.Title)
+                        </a>
+                    </h3>
+
+                    <h5 class="nav-item ml-auto mr-3" style="color:red; -webkit-text-stroke:black 1px;">@Html.DisplayFor(modelItem => item.Note)</h5>
+
+                    <a class="btn btn-primary ml-1" style="background-color: darkviolet;" asp-area="" asp-controller="Halls" asp-action="Index2" asp-route-id="@item.Halls.Id">Купить билет</a>
+                </nav>
+            </div>
+
+        }
+
+    }
+
+    @*<img src="~/images/Главная33.jpg" alt="Смайлик" style="float:right" class="transparent75" background-size="cover">*@
+
+</body>
+<style>
+    nav {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    table {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    h1 {
+        color: rgba(255, 255, 255, 0.7)
+    }
+</style>

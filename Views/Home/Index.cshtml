@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Добро пожаловать</h1>
+    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a></p>*@
+</div>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <span>Вы авторизованы</span>
+}
+else
+{
+    <span>Вы не авторизованы</span>
+}
+
+<div>
+    <ol>
+        <li><h3><a asp-area="" asp-controller="Afisha" asp-action="Index">Афиша</a></h3></li>
+        <li><h3><a asp-area="" asp-controller="Actors" asp-action="Index">Актеры</a></h3></li>
+    </ol>
+</div>
